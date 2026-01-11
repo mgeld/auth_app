@@ -12,7 +12,7 @@ function Register() {
     const handleSubmitForRegister = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/auth/register', { email, password })
+            const response = await axios.post('http://89.111.169.41:5002/auth/register', { email, password })
             if (response.data) {
                 alert('Успешная регистрация')
                 navigate('/login');

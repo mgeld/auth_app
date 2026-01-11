@@ -10,6 +10,9 @@ const pool = new Pool({
     port: Number(process.env.DB_PORT)
 })
 
+console.log('process.env.DB_USER', process.env.DB_USER)
+console.log('process.env.DB_USER', process.env.DB_USER)
+
 async function createUsers() {
     await pool.query(`
         CREATE TABLE users (

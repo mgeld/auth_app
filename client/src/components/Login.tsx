@@ -12,7 +12,7 @@ function Login() {
     const handleSubmitForLogin = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/auth/login', {email, password});
+            const response = await axios.post('http://89.111.169.41:5002/auth/login', {email, password});
             localStorage.setItem('authToken', response.data);
             navigate('/profile');
         } catch (err) {

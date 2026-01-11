@@ -4,8 +4,12 @@ import { Pool } from 'pg'
 import bcrypt from 'bcrypt';
 import jwt, { JwtPayload, SignOptions } from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import path from 'path';
+import url from 'url';
 
 dotenv.config()
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
 
 const pool = new Pool({
     user: process.env.DB_USER,
@@ -150,6 +154,18 @@ app.get('/profile', authenticateToken, async (req: TRequest, res: Response) => {
     }
 })
 
+
+// Указываем путь к папке с собранным фронтендом
+const clientBuildPath = path.join(__dirname, "../client/build");
+
+// Отдаём фронтенд как статику
+app.use(express.static(clientBuildPath));
+
+// Для всех маршрутов React SPA возвращаем index.html
+// Любой другой маршрут возвращает index.html
+app.use((req, res) => {
+  res.sendFile(path.join(clientBuildPath, "index.html"));
+});
 
 
 

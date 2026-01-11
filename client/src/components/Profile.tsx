@@ -9,7 +9,7 @@ function Profile() {
     useEffect(() => {
         const fetchProfile = async () => {
             const token = localStorage.getItem('authToken');
-            const response = await axios.get('http://localhost:5000/profile', {
+            const response = await axios.get('http://89.111.169.41:5002/profile', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUser(response.data);
