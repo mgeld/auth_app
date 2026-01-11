@@ -156,7 +156,7 @@ app.get('/profile', authenticateToken, async (req: TRequest, res: Response) => {
 
 
 // Указываем путь к папке с собранным фронтендом
-const clientBuildPath = path.join(__dirname, "../client/build");
+const clientBuildPath = path.join(__dirname, "../client/dist");
 
 // Отдаём фронтенд как статику
 app.use(express.static(clientBuildPath));
