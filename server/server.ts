@@ -5,12 +5,14 @@ import bcrypt from 'bcrypt';
 import jwt, { JwtPayload, SignOptions } from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
+dotenv.config()
+
 const pool = new Pool({
-    user: 'postgres',
-    password: '12345',
-    host: 'localhost',
-    database: 'auth_app',
-    port: 5432
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    database: process.env.DB_BASE,
+    port: Number(process.env.DB_PORT)
 })
 
 const app = express();
@@ -151,4 +153,4 @@ app.get('/profile', authenticateToken, async (req: TRequest, res: Response) => {
 
 
 
-app.listen(5000, () => console.log('server is started'));
+app.listen(process.env.SERVER_PORT, () => console.log('server is started'));
